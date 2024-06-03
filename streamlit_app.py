@@ -14,6 +14,11 @@ st.write('The name on your Smoothie will be: ', name_on_order)
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 st.dataframe(data=my_dataframe, use_container_width=True)
 
+# New Section to display fruityvice nutrition information
+import requests
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response.json())
+
 ingredients_list = st.multiselect(
     'Choose up to 5 ingredients:'
     , my_dataframe
